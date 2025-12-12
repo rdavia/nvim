@@ -2,6 +2,7 @@
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local general = augroup("General", { clear = true })
 
 autocmd("TextYankPost", {
   group = general,
@@ -32,9 +33,6 @@ autocmd("BufReadPost", {
   end,
   desc = "Ir a última posición del cursor"
 })
-
-local general = augroup("General", { clear = true })
-
 autocmd("VimEnter", {
     group = general,
     callback = function()
