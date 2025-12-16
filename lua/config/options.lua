@@ -21,6 +21,12 @@ opt.list = true
 opt.confirm = true
 opt.statusline = " %F %m%= %y | %{getcwd()} | %l:%c "
 
+-- Definir Powershell como terminal por defecto
+opt.shell = "pwsh"
+opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned Command"
+opt.shellquote = ""
+opt.shellxquote = ""
+
 vim.g.netrw_liststyle = 3        -- Vista árbol
 vim.g.netrw_banner = 0           -- Sin banner
 vim.g.netrw_winsize = 25         -- Ancho 25%
