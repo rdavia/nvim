@@ -3,6 +3,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local general = augroup("General", { clear = true })
+local autoread = augroup("AutoRead", { clear =true })
 
 autocmd("TextYankPost", {
   group = general,
@@ -46,5 +47,23 @@ autocmd("FileType", {
     pattern = "netrw",
     callback = function()
         vim.keymap.set("n", "q", ":close<CR>", { buffer = true })
+    end,
+})
+
+-- Autorecarga de archivos cuando el cursor cambia
+autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+    group = autoread,
+    callback = function()
+        if vim.fn.mode() ~= 'c' then
+            vim.cmd('checktime')
+        end
+    end,
+})
+
+-- Notificación cuando el archivo cambia
+autocmd("FileChangedShellPost", {
+    group = autoread,
+    callback = function()
+        vim.notify("Archivo recargado: " .. vim.fn.expand("%"), vim.log.levels.INFO)
     end,
 })

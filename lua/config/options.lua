@@ -22,10 +22,13 @@ opt.confirm = true
 opt.statusline = " %F %m%= %y | %{getcwd()} | %l:%c "
 
 -- Definir Powershell como terminal por defecto
-opt.shell = "pwsh"
+opt.shell = "powershell"
 opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned Command"
 opt.shellquote = ""
 opt.shellxquote = ""
+
+-- Autorecarga de archivos
+opt.autoread = true
 
 vim.g.netrw_liststyle = 3        -- Vista árbol
 vim.g.netrw_banner = 0           -- Sin banner
