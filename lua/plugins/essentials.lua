@@ -1,0 +1,35 @@
+-- ~/.config/nvim/lua/plugins/essentials.lua
+return {
+  -- Telescope: fuzzy finder (IMPRESCINDIBLE)
+  {
+    'nvim-telescope/telescope.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('telescope').setup{}
+    end
+  },
+
+  -- Treesitter: syntax highlighting avanzado
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = { "lua", "vim", "javascript", "typescript", "html", "css" },
+        highlight = { enable = true },
+      }
+    end
+  },
+
+  -- Which-key: muestra atajos disponibles
+  {
+    'folke/which-key.nvim',
+    event = "VeryLazy",
+    config = function()
+      require("which-key").setup{}
+    end
+  },
+
+  -- Mejores movimientos con s/S (opcional pero útil)
+  { 'ggandor/leap.nvim' },
+}
