@@ -32,4 +32,10 @@ return {
 
   -- Mejores movimientos con s/S (opcional pero útil)
   { 'ggandor/leap.nvim' },
+  -- Headlines: highlighting for MarkDown files
+  {
+    "lukas-reineke/headlines.nvim",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = true,
+  },
 }
