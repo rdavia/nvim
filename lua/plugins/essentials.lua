@@ -20,7 +20,7 @@ return {
       end
 
       treesitter.setup {
-        ensure_installed = { "lua", "vim", "javascript", "typescript", "html", "css" },
+        ensure_installed = { "lua", "vim", "javascript", "typescript", "html", "css", "c_sharp" },
         highlight = { enable = true },
       }
     end
