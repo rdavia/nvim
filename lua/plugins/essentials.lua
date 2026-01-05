@@ -1,4 +1,5 @@
--- ~/.config/nvim/lua/plugins/essentials.lua
+-- ~\AppData\Local\nvim\lua\plugins\essentials.lua
+
 return {
   -- Telescope: fuzzy finder (IMPRESCINDIBLE)
   {
@@ -38,10 +39,4 @@ return {
   -- Mejores movimientos con s/S (opcional pero útil)
   { 'ggandor/leap.nvim' },
 
-  -- Headlines: highlighting for MarkDown files
-  {
-    "lukas-reineke/headlines.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = true,
-  },
 }
