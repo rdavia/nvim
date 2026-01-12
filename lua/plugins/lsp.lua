@@ -21,6 +21,7 @@ return {
           "cssls",         -- CSS
           "omnisharp",     -- C#
           "sqlls",         -- SQL
+          "powershell_es", -- PowerShell
         },
         automatic_installation = true,
       })
@@ -70,6 +71,12 @@ return {
 
       -- SQL
       lspconfig.sqlls.setup({ capabilities = capabilities })
+
+      -- PowerShell
+      lspconfig.powershell_es.setup({
+        capabilities = capabilities,
+        bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services",
+      })
 
       -- Vue
       lspconfig.vue_ls.setup({

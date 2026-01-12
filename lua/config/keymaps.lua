@@ -29,6 +29,20 @@ map("n", "<C-s>", ":w<CR>", opts)
 map("i", "<C-s>", "<Esc>:w<CR>", opts)
 map("v", "<C-s>", "<Esc>:w<CR>", opts)
 
+-- Cambiar directorio local del buffer actual desde el home
+map("n", "<C-o>", function()
+  vim.ui.input({
+    prompt = "Seleccionar directorio: ",
+    default = vim.fn.expand("~") .. "/",
+    completion = "dir",
+  }, function(input)
+    if input then
+      vim.cmd("lcd " .. input)
+      print("Directorio local cambiado a: " .. input)
+    end
+  end)
+end, { noremap = true, silent = true })
+
 -- LSP maps (añadir después de tener LSP activo)
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
