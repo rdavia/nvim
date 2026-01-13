@@ -34,6 +34,7 @@ return {
     dependencies = { "williamboman/mason-lspconfig.nvim" },
     config = function()
       local lspconfig = require("lspconfig")
+      local mason_registry = require("mason-registry")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       -- Lua
@@ -45,9 +46,6 @@ return {
           }
         }
       })
-
-      -- TypeScript/JavaScript
-      lspconfig.ts_ls.setup({ capabilities = capabilities })
 
       -- HTML
       lspconfig.html.setup({ capabilities = capabilities })
@@ -75,14 +73,36 @@ return {
       -- PowerShell
       lspconfig.powershell_es.setup({
         capabilities = capabilities,
-        bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services",
       })
 
-      -- Vue
-      lspconfig.vue_ls.setup({
+      -- PHP
+      lspconfig.phpactor.setup({ capabilities = capabilities })
+      lspconfig.intelephense.setup({ capabilities = capabilities })
+
+      -- JSON
+      lspconfig.jsonls.setup({ capabilities = capabilities })
+
+      -- TypeScript/JavaScript
+      local ts_config = {
           capabilities = capabilities,
-          filetypes = { "vue" }
-      })
+          filetypes = { "typescript", "javascript", "vue" }
+      }
+
+      -- Configurar soporte para Vue solo si el paquete está instalado
+      if mason_registry.is_installed("vue-language-server") then
+          local vue_language_server = mason_registry.get_package("vue-language-server"):get_install_path() .. "/node_modules/@vue/language_server"
+          ts_config.init_options = {
+              plugins = {
+                  {
+                      name = "@vue/typescript-plugin",
+                      location = vue_language_server,
+                      languages = { "vue" }
+                  }
+              }
+          }
+      end
+
+      lspconfig.ts_ls.setup(ts_config)
     end
   },
 

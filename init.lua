@@ -2,10 +2,11 @@
 
 vim.g.mapleader = ' '
 
-vim.cmd('packadd! nohlsearch')
-
 require("config.options")
 require("config.keymaps")
 require("config.autocmd")
 require("config.lazy")
 require("utils.helpers")
+
+vim.cmd('packadd! nohlsearch')
+vim.cmd('colorscheme material-deep-ocean')
