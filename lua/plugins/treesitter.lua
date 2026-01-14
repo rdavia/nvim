@@ -9,6 +9,8 @@ return {
 
       treesitter.setup {
         ensure_installed = { "lua", "vim", "javascript", "typescript", "html", "css", "c_sharp" },
+        sync_install = false,
+        auto_install = true,
         highlight = { enable = true },
       }
     end

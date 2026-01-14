@@ -13,16 +13,7 @@ return {
     dependencies = { "williamboman/mason.nvim" },
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls",        -- Lua
-          "ts_ls",         -- TypeScript/JavaScript
-          "html",          -- HTML
-          "cssls",         -- CSS
-          "omnisharp",     -- C#
-          "sqlls",         -- SQL
-          "powershell_es", -- PowerShell
-        },
-        automatic_installation = true,
+        ensure_installed = {},
       })
     end
   },
@@ -46,13 +37,6 @@ return {
         }
       })
 
-      -- HTML
-      lspconfig.html.setup({ capabilities = capabilities })
-
-      -- CSS
-      lspconfig.cssls.setup({ capabilities = capabilities })
-
-      -- C#
       lspconfig.omnisharp.setup({
          capabilities = capabilities,
          cmd = {
@@ -66,22 +50,13 @@ return {
           enable_import_completion = true,
       })
 
-      -- SQL
+      lspconfig.html.setup({ capabilities = capabilities })
+      lspconfig.cssls.setup({ capabilities = capabilities })
       lspconfig.sqlls.setup({ capabilities = capabilities })
-
-      -- PowerShell
-      lspconfig.powershell_es.setup({
-        capabilities = capabilities,
-      })
-
-      -- PHP
       lspconfig.phpactor.setup({ capabilities = capabilities })
       lspconfig.intelephense.setup({ capabilities = capabilities })
-
-      -- JSON
       lspconfig.jsonls.setup({ capabilities = capabilities })
 
-      -- TypeScript/JavaScript
       local ts_config = {
           capabilities = capabilities,
           filetypes = { "typescript", "javascript", "vue" }
@@ -109,11 +84,11 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",     -- LSP source
-      "hrsh7th/cmp-buffer",       -- Buffer source
-      "hrsh7th/cmp-path",         -- Path source
-      "L3MON4D3/LuaSnip",         -- Snippet engine
-      "saadparwaiz1/cmp_luasnip", -- Snippet source
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
     },
     config = function()
       local cmp = require("cmp")
