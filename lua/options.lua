@@ -41,5 +41,7 @@ vim.diagnostic.config({
     prefix = "",
   },
 })
-
 vim.o.updatetime = 250
+
+-- nvim-tree
+opt.termguicolors = true
